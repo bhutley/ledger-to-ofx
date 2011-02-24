@@ -1,0 +1,7 @@
+This is a script that I hacked together over lunch to convert my
+transactions from jwiegley's ledger text file format
+(https://github.com/jwiegley/ledger/wiki/), to OFX format, so I can
+upload the transactions to Xero.com (www.xero.com)
+
+Note that the dates in my ledger file are all in YYYY-MM-DD format. If
+you've got dates in a different format, this script won't work.
