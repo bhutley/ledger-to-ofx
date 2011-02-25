@@ -57,7 +57,7 @@ class Ofx:
         if self.from_date == '':
             raise Exception("No transactions provided")
 
-        return "<OFX>\n<CREDITCARDMSGSRSV1>\n<CCSTMTTRNRS>\n<TRNUID>1</TRNUID>\n<STATUS>\n<CODE>0</CODE>\n<SEVERITY>INFO</SEVERITY>\n</STATUS>\n<CCSTMTRS>\n<CURDEF>%s</CURDEF>\n<CCACCTFROM>\n<ACCTID>%s</ACCTID>\n</CCACCTFROM>\n<BANKTRANLIST>\n<DTSTART>%s</DTSTART>\n<DTEND>%s</DTEND>\n" % (self.base_ccy, self.account_id, self.from_date, self.to_date)
+        return "OFXHEADER:100\nDATA:OFXSGML\nVERSION:102\nSECURITY:NONE\nENCODING:USASCII\nCHARSET:1252\nCOMPRESSION:NONE\nOLDFILEUID:NONE\nNEWFILEUID:NONE\n\n<OFX>\n<CREDITCARDMSGSRSV1>\n<CCSTMTTRNRS>\n<TRNUID>1</TRNUID>\n<STATUS>\n<CODE>0</CODE>\n<SEVERITY>INFO</SEVERITY>\n</STATUS>\n<CCSTMTRS>\n<CURDEF>%s</CURDEF>\n<CCACCTFROM>\n<ACCTID>%s</ACCTID>\n</CCACCTFROM>\n<BANKTRANLIST>\n<DTSTART>%s</DTSTART>\n<DTEND>%s</DTEND>\n" % (self.base_ccy, self.account_id, self.from_date, self.to_date)
 
     def _get_transaction_xml(self, xact):
         self.tran_id += 1
