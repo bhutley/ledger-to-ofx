@@ -60,7 +60,10 @@ def load_ledger_file(filename):
 
     curr_xact = None
 
+    linenum = 0
     for line in file:
+        linenum += 1
+
         if line.startswith(';'):
             continue
         line = line.rstrip()
@@ -79,7 +82,11 @@ def load_ledger_file(filename):
                     print("Error in split at line: %s" % line)
                     exit(0)
                 split = Split(fields[1], float(fields[2]))
-                curr_xact.add_split(split)
+                try:
+                    curr_xact.add_split(split)
+                except:
+                    print("Caught exception adding split at line number %d" % (linenum, ))
+                    exit(0)
             else:
                 state = WAITING_FOR_XACT
     file.close()
